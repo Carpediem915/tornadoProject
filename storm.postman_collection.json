@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "034b7a8f-6988-4eff-9063-ccb52980c033",
+		"name": "storm",
+		"description": "这是storm的接口测试用例集合",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取用户信息-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cab442bf-2f65-42e6-9859-b5d7ff3607ff",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body({\"code\": 200, \"id\": \"1\", \"name\": \"\\u5c0f\\u660e\", \"age\": 18});",
+							"});",
+							"",
+							"pm.test(\"Response code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "请求方式get"
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户信息-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c434daae-0651-4476-82d1-bd5b6f0da664",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body({\"code\": 200, \"id\": \"1\", \"name\": \"\\u5c0f\\u660e\", \"age\": 18});",
+							"});",
+							"",
+							"pm.test(\"Response code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "请求方式post"
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户信息（2）-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c3f7fcc-3df1-4f2f-ac11-d1186a6ce3a5",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body({",
+							"    \"code\": 200,",
+							"    \"id\": 1,",
+							"    \"name\": \"小明\",",
+							"    \"age\": 18",
+							"});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser2?userid=2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Post请求"
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户余额-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e4d1092-37d2-4139-a04f-5446ee419639",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"money\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\" : 1\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户余额-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f2d6783-6f2a-4317-b2d5-2b883241e0ba",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body({",
+							"    \"code\": 200,",
+							"    \"success\": \"成功\"",
+							"});",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "200",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "http 权限验证"
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户余额（2）-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a8005a-777f-432d-a910-bae5be89a1b1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body({ code: 200, success: '成功' });",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token=token12345"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上传文件-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7edc833-21c3-4b18-b856-6057ef09d07c",
+						"exec": [
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body( { code: 200, success: '成功' });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "上传文件接口，不适合postman自动化测试",
+							"type": "file",
+							"src": "/Users/hucaomei/workspace/Postman/tornadoProject/学习笔记.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/uploadfile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"uploadfile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

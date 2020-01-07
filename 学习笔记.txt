@@ -1,0 +1,30 @@
+node -v // 检查node.js版本
+npm -v // 检查npm版本
+sudo npm install new -g //安装newman
+newman run xx.json //运行测试集
+newman run xx.json -e xx.json //使用环境变量文件
+newman run xx.json -q xx.json //使用全局变量文件
+newman run xx.json -d xx.json //使用数据驱动文件
+newman测试报告
+使用 -r/--reporter 指定报告格式
+cli:在终端呈现的报告，newman默认
+json: -r json --reporter-json-export xx.json
+html: -r html --reporter-html-export xx.html
+
+使用--reporter-html-export之前须安装：
+npm install -g newman-reporter-html
+
+jenkins安装
+sudo cat /Users/Shared/Jenkins/Home/secrets/initialAdminPassword // 查看初始管理密码
+jenkins卸载
+/Library/Application Support/Jenkins/Uninstall.command
+
+完整构建命令:
+newman run /workspace/postmanTest/DDTTest.postman_collection.json -d /workspace/postmanTest/paramData.csv -r cli,html --reporter-html-export /workspace/postmanTest/DDTTest_report.html
+
+遇到的问题
+1. 执行--reporter-html-expor 没有生成html文件
+    须安装 npm install -g newman-reporter-html
+2. Jenkins构建失败
+error: EACCES: permission denied, open '/workspace/postmanTest/DDTTest_report.html'
+    修改文件权限
